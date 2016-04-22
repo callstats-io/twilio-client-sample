@@ -34,8 +34,8 @@ def client():
     client_name = request.values.get('client', None) or "jenny"
 
     # Find these values at twilio.com/user/account
-    account_sid = "AC21665a03d508b0122acf573d6e5d012b"
-    auth_token = "61dc1bbe9764c9ddeb1b7d9cb08d01fd"
+    account_sid = ""
+    auth_token = ""
 
     capability = TwilioCapability(account_sid, auth_token)
 
