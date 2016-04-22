@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>callstats Twilio-Client</title>
+    <script type="text/javascript"
+      src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/1.5.0/sha.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:3000/static/callstats-twilio.js"></script>
+    <link href="//static0.twilio.com/resources/quickstart/client.css"
+      type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+      var appID = "callstats_app_id";
+      var appSecret = "callstats_app_secret";
+      var conferenceID = "TwilioTest";
+      var remoteUserId;
+      var params;
+
+      function csInitCallback(err, msg) {
+        console.log("CallStats Initializing Status: err=" + err + " msg=" + msg);
+      }
+
+      function csCallback(err, msg) {
+        console.log("CallStats: ", " status: ", err, " msg: ", msg);
+      }
+
+      Twilio.Device.setup("{{ token }}");
+
+      Twilio.Device.ready(function (device) {
+        $("#log").text("Client '{{ client_name }}' is ready");
+        CallstatsTwilio.initialize(appID, appSecret, conferenceID, device._clientName, params, csInitCallback, csCallback);
+      });
+
+      Twilio.Device.error(function (error) {
+        $("#log").text("Error: " + error.message);
+      });
+
+      Twilio.Device.connect(function (conn) {
+        $("#log").text("Successfully established call ",conn);
+      });
+
+      Twilio.Device.disconnect(function (conn) {
+        $("#log").text("Call ended");
+      });
+
+      Twilio.Device.incoming(function (conn) {
+        $("#log").text("Incoming connection from " + conn.parameters.From);
+        // accept the incoming connection and start two-way audio
+        conn.accept();
+        remoteUserId = conn.parameters.From.replace("client:", "");
+        CallstatsTwilio.setRemoteUserID(remoteUserId);
+      });
+
+      function call() {
+        // get the phone number or client to connect the call to
+        params = {"PhoneNumber": $("#number").val()};
+        var connection = Twilio.Device.connect(params);
+        remoteUserId = $("#number").val();
+        CallstatsTwilio.setRemoteUserID(remoteUserId);
+      }
+
+      function hangup() {
+        Twilio.Device.disconnectAll();
+      }
+    </script>
+  </head>
+  <body>
+    <button class="call" onclick="call();">
+      Call
+    </button>
+
+    <button class="hangup" onclick="hangup();">
+      Hangup
+    </button>
+
+    <input type="text" id="number" name="number"
+      placeholder="Enter a phone number or client to call"/>
+
+    <div id="log">Loading pigeons...</div>
+  </body>
+</html>
