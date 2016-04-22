@@ -35,9 +35,4 @@ You will first need to install the application's dependencies. To install them  
     pip install twilio
     pip install flask
 
-Now, you should be able to launch the application.  From your terminal, run `python app.py`.  This should launch your sinatra application on port 5000 - [visit that URL on your local host](http://localhost:5000/).  Enter your mobile number in the fields provided, and test both SMS text messages and phone calls being sent to the mobile number you provide.  The web UI should look something like this:
-
-![python guild](http://demo.kevinwhinnery.com/upload/Welcome_to_the_Python_Guild%21-20130827-150203.png)
-
-## Begin Questing!
-This is but your first step into a larger world.  [Return to TwilioQuest](http://quest.twilio.com) to continue your adventure.  Huzzah!
+Now, you should be able to launch the application.  From your terminal, run `python run.py`.  This should launch your sinatra application on port 5000 - (127.0.0.1:5000/client?client=tommy)).
