@@ -1,8 +1,19 @@
-# Welcome to the Python Guild!
+## twilio client meets callstats.io
+
+This is an example integration of the callstats.js (using a shim) hosted at: http://api.callstats.io/callstats-twilio.min.js
+
+The following steps need to be performed by a twilio developer.
+
++ initialize
++ setCallParams: set call-id and remote-user-id.
+
+--- 
+
+## Welcome to the Python Guild!
 
 As members of the Python guild, you will be working through the challenges of TwilioQuest using the Python programming language.  This project is pre-configured to do some interesting Twilio stuff using Python and the [Flask](http://flask.pocoo.org/) web framework.
 
-## Setting Up
+### Setting Up
 
 We assume that before you begin, you will have [Python](http://www.python.org/) and [pip](http://www.pip-installer.org/en/latest/) installed on your system and available at the command line.
 
@@ -26,7 +37,7 @@ On Windows, the easiest way to set permanent environment variables (as of Window
     setx TWILIO_AUTH_TOKEN XXXXXXXXX
     setx TWILIO_NUMBER +16518675309
 
-## Running the application
+### Running the application
 
 [Download the project source code directly](https://github.com/twilio/starter-python/archive/master.zip) or [clone the repository on GitHub](https://github.com/twilio/starter-python).  Navigate to the folder with the source code on your machine in a terminal window.
 
