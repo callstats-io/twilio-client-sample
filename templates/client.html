@@ -29,11 +29,13 @@
 
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
+        conferenceID = device._clientName;
         CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
       });
 
       Twilio.Device.error(function (error) {
         $("#log").text("Error: " + error.message);
+        console.log("Error ", error);
       });
 
       Twilio.Device.connect(function (conn) {
@@ -58,6 +60,7 @@
         params = {"PhoneNumber": $("#number").val()};
         var connection = Twilio.Device.connect(params);
         remoteUserId = $("#number").val();
+        conferenceID = remoteUserId;
         CallstatsTwilio.setCallParams(remoteUserId, conferenceID);
         console.log("connection is ",connection);
       }
