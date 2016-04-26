@@ -4,8 +4,8 @@ This is an example integration of the callstats.js (using a shim) hosted at: htt
 
 The following steps need to be performed by a twilio developer.
 
-+ initialize
-+ setCallParams: set call-id and remote-user-id.
++ CallstatsTwilio.initialize(): sets the localUserId and initializes the js to authenticate with callstats.io, all the necessary callbacks are provided here.
++ CallstatsTwilio.setCallParams(): set the conferenceId and the remoteUserId.
 
 More details can be found in this link http://www.callstats.io/integrate-twilio/
 
