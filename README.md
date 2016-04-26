@@ -1,6 +1,6 @@
 ## twilio client meets callstats.io
 
-This is an example integration of the callstats.js (using a shim) hosted at: http://api.callstats.io/callstats-twilio-client.min.js
+This is an example integration of the callstats.js (using a shim) hosted at: https://api.callstats.io/static/callstats-twilio-client.min.js
 
 The following steps need to be performed by a twilio developer.
 
