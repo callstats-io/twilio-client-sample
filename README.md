@@ -1,11 +1,13 @@
 ## twilio client meets callstats.io
 
-This is an example integration of the callstats.js (using a shim) hosted at: http://api.callstats.io/callstats-twilio.min.js
+This is an example integration of the callstats.js (using a shim) hosted at: http://api.callstats.io/callstats-twilio-client.min.js
 
 The following steps need to be performed by a twilio developer.
 
 + initialize
 + setCallParams: set call-id and remote-user-id.
+
+More details can be found in this link http://www.callstats.io/integrate-twilio/
 
 ---
 
