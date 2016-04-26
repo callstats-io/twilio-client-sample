@@ -7,7 +7,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/1.5.0/sha.js"></script>
-    <script type="text/javascript" src="http://127.0.0.1:3000/static/callstats-twilio.js"></script>
+    <!-- <script type="text/javascript" src="http://127.0.0.1:3000/static/callstats-twilio.min.js"></script> -->
+    <!-- <script type="text/javascript" src="http://test-api-1.callstats.io/static/callstats-twilio.min.js"></script> -->
+    <script type="text/javascript" src="https://api.callstats.io/static/callstats-twilio.min.js"></script>
+
+
     <link href="//static0.twilio.com/resources/quickstart/client.css"
       type="text/css" rel="stylesheet" />
     <script type="text/javascript">
@@ -29,7 +33,6 @@
 
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
-        conferenceID = device._clientName;
         CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
       });
 
@@ -50,9 +53,9 @@
         $("#log").text("Incoming connection from " + conn.parameters.From);
         // accept the incoming connection and start two-way audio
         conn.accept();
+        conferenceID = conn.device._clientName;
         remoteUserId = conn.parameters.From.replace("client:", "");
         CallstatsTwilio.setCallParams(remoteUserId, conferenceID);
-        console.log("connection is ",conn);
       });
 
       function call() {
