@@ -47,5 +47,27 @@ def client():
     return render_template('client.html', token=token,
                            client_name=client_name)
 
+
+@app.route('/reqclient', methods=['GET', 'POST'])
+def reqclient():
+    """Respond to incoming requests."""
+
+    client_name = request.values.get('client', None) or "jenny"
+
+    # Find these values at twilio.com/user/account
+    account_sid = ""
+    auth_token = ""
+
+    capability = TwilioCapability(account_sid, auth_token)
+
+    application_sid = "APabe7650f654fc34655fc81ae71caa3ff" # Twilio Application Sid
+    capability.allow_client_outgoing(application_sid)
+    capability.allow_client_incoming(client_name)
+    token = capability.generate()
+
+    return render_template('client1.html', token=token,
+                           client_name=client_name)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

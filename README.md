@@ -35,4 +35,4 @@ You will first need to install the application's dependencies. To install them  
     pip install twilio
     pip install flask
 
-Now, you should be able to launch the application.  From your terminal, run `python run.py`.  This should launch your sinatra application on port 5000 - (127.0.0.1:5000/client?client=tommy)).
+Now, you should be able to launch the application.  From your terminal, run `python run.py`.  This should launch your sinatra application on port 5000 - (127.0.0.1:5000/client?client=tommy)) or (127.0.0.1:5000/reqclient?client=tommy)) .
