@@ -28,7 +28,7 @@ requirejs.config({
     },
     'callstats-twilio-client': {
       exports: 'callstats-twilio-client',
-      deps: ['jquery','socketio','sha', 'callstats']
+      deps: ['callstats']
     }
   }
 });
