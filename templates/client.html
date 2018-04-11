@@ -29,11 +29,20 @@
         console.log("CallStats: ", " status: ", err, " msg: ", msg);
       }
 
+      function callback(status, results) {
+        console.log("preCallTestResults ", status, results);
+      }
+
       Twilio.Device.setup("{{ token }}");
 
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
-        CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
+        window.CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
+        window.CallstatsTwilio.callStats.on('preCallTestResults', callback)
+        window.setInterval(() => {
+          console.log("Triggering precall test");
+          window.CallstatsTwilio.callStats.makePrecallTest();
+        }, 5*60*1000)
       });
 
       Twilio.Device.error(function (error) {
