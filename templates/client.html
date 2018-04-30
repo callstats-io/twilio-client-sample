@@ -20,17 +20,33 @@
       var conferenceID = "TwilioTest";
       var remoteUserId;
       var params;
+      var KITE = {};
 
       function csInitCallback(err, msg) {
         console.log("CallStats Initializing Status: err=" + err + " msg=" + msg);
+        // KITE binding for csio initialization result.
+        KITE.csInitCallbackResult = {
+          status: err,
+          msg: msg
+        };
       }
 
       function csCallback(err, msg) {
         console.log("CallStats: ", " status: ", err, " msg: ", msg);
+        // KITE binding for csio callstats result.
+        KITE.csCallbackResult = {
+            status: err,
+            msg: msg
+        };
       }
 
       function callback(status, results) {
         console.log("preCallTestResults ", status, results);
+        // KITE binding for precallTextResult callback result
+        KITE.preCallTestResults = {
+            status: status,
+            results: results
+        };
       }
 
       Twilio.Device.setup("{{ token }}");
@@ -48,6 +64,8 @@
       Twilio.Device.error(function (error) {
         $("#log").text("Error: " + error.message);
         console.log("Error ", error);
+        // When a device error occured
+        KITE.deviceError = error;
       });
 
       Twilio.Device.connect(function (conn) {
