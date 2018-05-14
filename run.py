@@ -17,7 +17,7 @@ __AUTH_TOKEN  = os.getenv('AUTH_TOKEN', '')
 __APP_ID = os.getenv('APP_ID', '')
 __APP_SECRET = os.getenv('APP_SECRET', '')
 __PORT = os.getenv("PORT", 5050)
-
+__TARGET = os.getenv('TARGET', 'dev')
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
     dest_number = request.values.get('PhoneNumber', None)
@@ -76,4 +76,7 @@ def reqclient():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=__PORT, debug=True)
+    isDebug = False
+    if __TARGET == 'local':
+        isDebug = True
+    app.run(host='0.0.0.0', port=__PORT, debug=isDebug)
