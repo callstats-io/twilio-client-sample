@@ -16,6 +16,7 @@ __ACCOUNT_SID = os.getenv('ACCOUNT_SID', '')
 __AUTH_TOKEN  = os.getenv('AUTH_TOKEN', '')
 __APP_ID = os.getenv('APP_ID', '')
 __APP_SECRET = os.getenv('APP_SECRET', '')
+__PORT = os.getenv("PORT", 5050)
 
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
@@ -75,4 +76,4 @@ def reqclient():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='5000', debug=True)
+    app.run(host='0.0.0.0', port=__PORT, debug=True)
