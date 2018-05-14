@@ -53,8 +53,8 @@
 
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
-        window.CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
-        window.CallstatsTwilio.callStats.on('preCallTestResults', callback)
+        window.CallstatsTwilio.initialize(appID, appSecret, device.t, params, csInitCallback, csCallback);
+        window.CallstatsTwilio.callStats.on('preCallTestResults', callback);
         window.setInterval(() => {
           console.log("Triggering precall test");
           window.CallstatsTwilio.callStats.makePrecallTest();

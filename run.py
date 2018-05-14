@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
 from twilio.util import TwilioCapability
 import twilio.twiml
-
 import re
+import os
 
 app = Flask(__name__)
 
@@ -11,6 +11,8 @@ caller_id = "+12125551234"
 
 # put your default Twilio Client name here, for when a phone number isn't given
 default_client = "jenny"
+__ACCOUNT_SID = os.getenv('ACCOUNT_SID', '')
+__AUTH_TOKEN  = os.getenv('AUTH_TOKEN', '')
 
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
@@ -34,8 +36,8 @@ def client():
     client_name = request.values.get('client', None) or "jenny"
 
     # Find these values at twilio.com/user/account
-    account_sid = ""
-    auth_token = ""
+    account_sid = __ACCOUNT_SID
+    auth_token = __AUTH_TOKEN
 
     capability = TwilioCapability(account_sid, auth_token)
 
@@ -55,8 +57,8 @@ def reqclient():
     client_name = request.values.get('client', None) or "jenny"
 
     # Find these values at twilio.com/user/account
-    account_sid = ""
-    auth_token = ""
+    account_sid = __ACCOUNT_SID
+    auth_token = __AUTH_TOKEN
 
     capability = TwilioCapability(account_sid, auth_token)
 
