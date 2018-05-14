@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from twilio.util import TwilioCapability
 import twilio.twiml
+
 import re
 import os
 
@@ -13,6 +14,8 @@ caller_id = "+12125551234"
 default_client = "jenny"
 __ACCOUNT_SID = os.getenv('ACCOUNT_SID', '')
 __AUTH_TOKEN  = os.getenv('AUTH_TOKEN', '')
+__APP_ID = os.getenv('APP_ID', '')
+__APP_SECRET = os.getenv('APP_SECRET', '')
 
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
@@ -46,7 +49,7 @@ def client():
     capability.allow_client_incoming(client_name)
     token = capability.generate()
 
-    return render_template('client.html', token=token,
+    return render_template('client.html', token=token, appID=__APP_ID, appSecret=__APP_SECRET,
                            client_name=client_name)
 
 
@@ -67,7 +70,7 @@ def reqclient():
     capability.allow_client_incoming(client_name)
     token = capability.generate()
 
-    return render_template('client.html', token=token,
+    return render_template('client.html', token=token, appID=__APP_ID, appSecret=__APP_SECRET,
                            client_name=client_name)
 
 
