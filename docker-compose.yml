@@ -7,11 +7,10 @@ services:
     build:
       context: ./../twilio-client-sample
     environment:
-      TWILIO_ACCOUNT_SID: 'your_account_sid'
-      TWILIO_API_KEY: 'your_api_key'
-      TWILIO_API_SECRET: 'your_api_secret'
-      APP_ID: 'your_app_id'
-      APP_SECRET: 'your_app_secret'
+      ACCOUNT_SID: 'twilio_account_sid'
+      AUTH_TOKEN: 'twilio_auth_token'
+      APP_ID: 'twilio_app_id'
+      APP_SECRET: 'twilio_app_secret'
       PORT: '5050'
       TARGET: "dev"
     ports:
