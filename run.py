@@ -79,4 +79,4 @@ if __name__ == "__main__":
     isDebug = False
     if __TARGET == 'local':
         isDebug = True
-    app.run(host='0.0.0.0', port=__PORT, debug=isDebug)
+    app.run(host='0.0.0.0', port=__PORT, debug=isDebug, ssl_context='adhoc')
