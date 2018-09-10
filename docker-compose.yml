@@ -1,0 +1,18 @@
+version: '2'
+services:
+  #########################
+  # CSIO Twilio audio only SHIM demo application
+  #########################
+  twilio-audio-shim-demo:
+    build:
+      context: ./../twilio-client-sample
+    environment:
+      ACCOUNT_SID: 'twilio_account_sid'
+      AUTH_TOKEN: 'twilio_auth_token'
+      APP_ID: 'twilio_app_id'
+      APP_SECRET: 'twilio_app_secret'
+      PORT: '5050'
+      TARGET: "dev"
+    ports:
+      - "5050:5050"
+    command: "python run.py"

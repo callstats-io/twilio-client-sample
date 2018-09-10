@@ -15,8 +15,8 @@
     <link href="//static0.twilio.com/resources/quickstart/client.css"
       type="text/css" rel="stylesheet" />
     <script type="text/javascript">
-      var appID = "callstats_app_id";
-      var appSecret = "callstats_app_secret";
+      var appID = "{{ appID }}";
+      var appSecret = "{{ appSecret }}";
       var conferenceID = "TwilioTest";
       var remoteUserId;
       var params;
@@ -54,7 +54,7 @@
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
         window.CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
-        window.CallstatsTwilio.callStats.on('preCallTestResults', callback)
+        window.CallstatsTwilio.callStats.on('preCallTestResults', callback);
         window.setInterval(() => {
           console.log("Triggering precall test");
           window.CallstatsTwilio.callStats.makePrecallTest();

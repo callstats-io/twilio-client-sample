@@ -3,6 +3,7 @@ from twilio.util import TwilioCapability
 import twilio.twiml
 
 import re
+import os
 
 app = Flask(__name__)
 
@@ -11,7 +12,12 @@ caller_id = "+12125551234"
 
 # put your default Twilio Client name here, for when a phone number isn't given
 default_client = "jenny"
-
+__ACCOUNT_SID = os.getenv('ACCOUNT_SID', '')
+__AUTH_TOKEN  = os.getenv('AUTH_TOKEN', '')
+__APP_ID = os.getenv('APP_ID', '')
+__APP_SECRET = os.getenv('APP_SECRET', '')
+__PORT = os.getenv("PORT", 5050)
+__TARGET = os.getenv('TARGET', 'dev')
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
     dest_number = request.values.get('PhoneNumber', None)
@@ -34,8 +40,8 @@ def client():
     client_name = request.values.get('client', None) or "jenny"
 
     # Find these values at twilio.com/user/account
-    account_sid = ""
-    auth_token = ""
+    account_sid = __ACCOUNT_SID
+    auth_token = __AUTH_TOKEN
 
     capability = TwilioCapability(account_sid, auth_token)
 
@@ -44,7 +50,7 @@ def client():
     capability.allow_client_incoming(client_name)
     token = capability.generate()
 
-    return render_template('client.html', token=token,
+    return render_template('client.html', token=token, appID=__APP_ID, appSecret=__APP_SECRET,
                            client_name=client_name)
 
 
@@ -55,8 +61,8 @@ def reqclient():
     client_name = request.values.get('client', None) or "jenny"
 
     # Find these values at twilio.com/user/account
-    account_sid = ""
-    auth_token = ""
+    account_sid = __ACCOUNT_SID
+    auth_token = __AUTH_TOKEN
 
     capability = TwilioCapability(account_sid, auth_token)
 
@@ -65,9 +71,12 @@ def reqclient():
     capability.allow_client_incoming(client_name)
     token = capability.generate()
 
-    return render_template('client.html', token=token,
+    return render_template('client.html', token=token, appID=__APP_ID, appSecret=__APP_SECRET,
                            client_name=client_name)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    isDebug = False
+    if __TARGET == 'local':
+        isDebug = True
+    app.run(host='0.0.0.0', port=__PORT, debug=isDebug, ssl_context='adhoc')
