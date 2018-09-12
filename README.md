@@ -39,7 +39,6 @@ Navigate to the folder with the source code on your machine in a terminal window
 
 You will first need to install the application's dependencies. To install them  manually, type the following commands in your terminal:
 
-    pip install twilio==5.7.0 #Since, this implementation has version dependency [ does not support 6.x ]
-    pip install flask
+    pip install -r requirements.txt
 
 Now, you should be able to launch the application.  From your terminal, run `python run.py`.  This should launch your sinatra application on port 5000 - (127.0.0.1:5000/client?client=tommy)) or (127.0.0.1:5000/reqclient?client=tommy)) .
