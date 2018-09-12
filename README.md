@@ -26,6 +26,13 @@ Before you can run this project, you will need to set three system environment v
 
 Use the values obtained in the previous steps and change in the run.py file.
 
+Added npm package to download latest [Twilio javascript client library](https://www.npmjs.com/package/twilio-client). So, we assume system has npm installed.
+Run following npm install command to download latest Twilio javascript client library.
+```
+    npm install
+```
+
+
 ### Running the application
 
 Navigate to the folder with the source code on your machine in a terminal window.
