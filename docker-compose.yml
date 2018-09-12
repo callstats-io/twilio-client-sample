@@ -9,8 +9,8 @@ services:
     environment:
       ACCOUNT_SID: 'twilio_account_sid'
       AUTH_TOKEN: 'twilio_auth_token'
-      APP_ID: 'twilio_app_id'
-      APP_SECRET: 'twilio_app_secret'
+      APP_ID: 'csio_app_id'
+      APP_SECRET: 'csio_app_secret'
       PORT: '5050'
       TARGET: "dev"
     ports:

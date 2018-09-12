@@ -1,0 +1,22 @@
+{
+  "name": "twilio-client-sample",
+  "version": "1.0.0",
+  "description": "This is an example integration of the callstats.js (using a shim) hosted at: https://api.callstats.io/static/callstats-twilio-client.min.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/callstats-io/twilio-client-sample.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/callstats-io/twilio-client-sample/issues"
+  },
+  "homepage": "https://github.com/callstats-io/twilio-client-sample#readme",
+  "dependencies": {
+    "twilio-client": "*"
+  }
+}
