@@ -1,11 +1,12 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 from twilio.util import TwilioCapability
 import twilio.twiml
 
 import re
 import os
 
-app = Flask(__name__)
+# set the project root directory as the static folder, you can set others.
+app = Flask(__name__, static_url_path='/static',static_folder='node_modules/twilio-client/dist',)
 
 # Add a phone number you've verified with Twilio as the caller ID
 caller_id = "+12125551234"
@@ -18,6 +19,8 @@ __APP_ID = os.getenv('APP_ID', '')
 __APP_SECRET = os.getenv('APP_SECRET', '')
 __PORT = os.getenv("PORT", 5050)
 __TARGET = os.getenv('TARGET', 'dev')
+
+
 @app.route('/voice', methods=['GET', 'POST'])
 def voice():
     dest_number = request.values.get('PhoneNumber', None)
