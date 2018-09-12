@@ -3,7 +3,7 @@
   <head>
     <title>callstats Twilio-Client</title>
     <script type="text/javascript"
-      src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.js"></script>
+      src="//media.twiliocdn.com/sdk/js/client/v1.6/twilio.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/1.5.0/sha.js"></script>
@@ -17,6 +17,7 @@
     <script type="text/javascript">
       var appID = "{{ appID }}";
       var appSecret = "{{ appSecret }}";
+      var clientName = "{{ client_name }}";
       var conferenceID = "TwilioTest";
       var remoteUserId;
       var params;
@@ -53,7 +54,8 @@
 
       Twilio.Device.ready(function (device) {
         $("#log").text("Client '{{ client_name }}' is ready");
-        window.CallstatsTwilio.initialize(appID, appSecret, device._clientName, params, csInitCallback, csCallback);
+        console.log('>', appID, appSecret, clientName, params)
+        window.CallstatsTwilio.initialize(appID, appSecret, clientName, params, csInitCallback, csCallback);
         window.CallstatsTwilio.callStats.on('preCallTestResults', callback);
         window.setInterval(() => {
           console.log("Triggering precall test");
@@ -80,7 +82,7 @@
         $("#log").text("Incoming connection from " + conn.parameters.From);
         // accept the incoming connection and start two-way audio
         conn.accept();
-        conferenceID = conn.device._clientName;
+        conferenceID = clientName;
         remoteUserId = conn.parameters.From.replace("client:", "");
         CallstatsTwilio.setCallParams(remoteUserId, conferenceID);
       });
