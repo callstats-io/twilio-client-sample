@@ -7,7 +7,7 @@ The following steps need to be performed by a twilio developer.
 + `CallstatsTwilio.initialize()`: sets the localUserId and initializes the js to authenticate with callstats.io, all the necessary callbacks are provided here.
 + `CallstatsTwilio.setCallParams()`: set the conferenceId and the remoteUserId.
 
-More details can be found in this link https://www.callstats.io/integrate/twilio-voice/
+More details can be found in this link http://www.callstats.io/integrate-twilio/
 
 ---
 
