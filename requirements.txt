@@ -20,3 +20,4 @@ six==1.11.0
 twilio==5.7.0
 urllib3==1.22
 Werkzeug==0.14.1
+pyopenssl==18.0.0

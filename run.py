@@ -41,6 +41,8 @@ def client():
     """Respond to incoming requests."""
 
     client_name = request.values.get('client', None) or "jenny"
+    test_version = request.values.get('version', None) or u'1'
+
 
     # Find these values at twilio.com/user/account
     account_sid = __ACCOUNT_SID
@@ -53,7 +55,8 @@ def client():
     capability.allow_client_incoming(client_name)
     token = capability.generate()
 
-    return render_template('client.html', token=token, appID=__APP_ID, appSecret=__APP_SECRET,
+    return render_template('client.html' if test_version == u'1' else 'client1.html', token=token, appID=__APP_ID,
+                           appSecret=__APP_SECRET,
                            client_name=client_name)
 
 
